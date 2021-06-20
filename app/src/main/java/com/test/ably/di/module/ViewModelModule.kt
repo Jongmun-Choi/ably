@@ -1,6 +1,7 @@
 package com.test.ably.di.module
 
 import com.test.ably.di.factory.MainViewModelFactory
+import com.test.ably.repository.HomeRepository
 import com.test.ably.retrofit.AblyApiService
 import dagger.Module
 import dagger.Provides
@@ -9,8 +10,8 @@ import dagger.Provides
 class ViewModelModule {
 
     @Provides
-    fun providesMainViewModelFactory(retrofit : AblyApiService) : MainViewModelFactory {
-        return MainViewModelFactory(retrofit)
+    fun providesMainViewModelFactory(homeRepo : HomeRepository) : MainViewModelFactory {
+        return MainViewModelFactory(homeRepo)
     }
 
 }

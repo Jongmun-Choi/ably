@@ -3,6 +3,7 @@ package com.test.ably.di.component
 import android.app.Application
 import com.test.ably.AblyApplication
 import com.test.ably.di.module.ActivityBindingModule
+import com.test.ably.di.module.RepositoryModule
 import com.test.ably.di.module.RetrofitModule
 import com.test.ably.di.module.ViewModelModule
 import dagger.BindsInstance
@@ -14,7 +15,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [AndroidSupportInjectionModule::class,
                     RetrofitModule::class, ActivityBindingModule::class,
-                    ViewModelModule::class])
+                    ViewModelModule::class, RepositoryModule::class])
 
 interface AppComponent : AndroidInjector<AblyApplication> {
 

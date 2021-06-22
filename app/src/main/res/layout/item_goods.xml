@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                app:setImageUrl="@{item.image}"/>
+                app:setRoundImageUrl="@{item.image}"/>
 
             <ImageView
                 android:id="@+id/iv_like"
@@ -83,10 +83,11 @@
             android:id="@+id/iv_new"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingRight="5dp"
             android:layout_marginTop="8dp"
-            android:layout_marginRight="5dp"
             android:src="@drawable/img_badge_new"
             android:visibility="@{item._new == true ? View.VISIBLE : View.GONE}"
+            app:layout_constraintRight_toLeftOf="@id/tv_sell_count"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
             app:layout_constraintLeft_toLeftOf="parent"/>
 

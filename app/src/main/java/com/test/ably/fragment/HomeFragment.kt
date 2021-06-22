@@ -1,12 +1,13 @@
 package com.test.ably.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager.widget.ViewPager
 import com.test.ably.MainActivity
 import com.test.ably.R
 import com.test.ably.adapter.BannerPagerAdapter
@@ -18,8 +19,8 @@ import com.test.ably.model.Goods
 import com.test.ably.util.GridSpacingItemDecoration
 import com.test.ably.viewmodel.MainViewModel
 import dagger.android.support.DaggerFragment
-import kotlinx.coroutines.newFixedThreadPoolContext
 import javax.inject.Inject
+
 
 class HomeFragment : DaggerFragment(), View.OnClickListener {
 
@@ -27,11 +28,14 @@ class HomeFragment : DaggerFragment(), View.OnClickListener {
 
     lateinit var binding : FragmentHomeBinding
     lateinit var viewModel : MainViewModel
+    var currentPage = 1
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         binding.lifecycleOwner = activity as MainActivity
@@ -39,6 +43,35 @@ class HomeFragment : DaggerFragment(), View.OnClickListener {
         viewModel = ViewModelProvider(activity as MainActivity, factory).get(MainViewModel::class.java)
 
         binding.bannerPager.adapter = BannerPagerAdapter(activity as MainActivity, listOf<Banner>())
+
+        binding.bannerPager.setOnTouchListener(object : View.OnTouchListener{
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                if (event!!.action === MotionEvent.ACTION_DOWN &&
+                    v is ViewGroup
+                ) {
+                    v.requestDisallowInterceptTouchEvent(true)
+                }
+                return false
+            }
+        })
+
+        binding.bannerPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+
+            }
+
+            override fun onPageSelected(position: Int) {
+                binding.currentPage = position+1
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+
+            }
+        })
 
         val adapter = GoodsAdapter(this)
         binding.goodsGrid.adapter = adapter
@@ -52,6 +85,8 @@ class HomeFragment : DaggerFragment(), View.OnClickListener {
 
             if(it != null) {
                 binding.bannerPager.adapter = BannerPagerAdapter(activity as MainActivity,it)
+                binding.totalCount = it.size
+                binding.currentPage = 1
             }
 
         }

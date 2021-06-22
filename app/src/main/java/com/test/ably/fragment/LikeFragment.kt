@@ -38,6 +38,7 @@ class LikeFragment : DaggerFragment(), View.OnClickListener {
         var adapter = GoodsAdapter(this)
 
         binding.rvLike.adapter = adapter
+        binding.zzimCount = 0
 
         val spanCount = 2
         val spacing = 50
@@ -45,8 +46,12 @@ class LikeFragment : DaggerFragment(), View.OnClickListener {
         binding.rvLike.addItemDecoration(GridSpacingItemDecoration(spanCount, spacing, inCludeEdge))
 
         viewModel.goods.observe(activity as MainActivity){
-            adapter.submitList(it.filter { it.like == true }.toMutableList())
+            val zzimList = it.filter { it.like == true }.toMutableList()
+            adapter.submitList(zzimList)
+            binding.zzimCount = zzimList.size
         }
+
+
 
 
         return binding.root

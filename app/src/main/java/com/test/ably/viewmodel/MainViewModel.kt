@@ -12,6 +12,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.rsupportloadimage.model.LoadingState
 import com.test.ably.model.Banner
 import com.test.ably.model.Goods
@@ -82,6 +84,13 @@ class MainViewModel(private val homeRepo : HomeRepository) : ViewModel() {
         goods.value = goodsList
     }
 
+}
+
+@BindingAdapter(value = ["setRoundImageUrl"])
+fun ImageView.bindRoundImageUrl(url: String) {
+    Log.i("img_test", "url = ${url}")
+    val options = RequestOptions.bitmapTransform(RoundedCorners(10))
+    GlideApp.with(this).load(url).apply(options).into(this)
 }
 
 @BindingAdapter(value = ["setImageUrl"])

@@ -2,6 +2,20 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="currentPage"
+            type="Integer" />
+        <variable
+            name="totalCount"
+            type="Integer" />
+
+        <variable
+            name="view"
+            type="android.view.View" />
+
+    </data>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
@@ -35,7 +49,8 @@
                         android:textSize="12sp"
                         android:textColor="@color/white"
                         android:background="@drawable/bg_page_count"
-                        android:text="12/12"/>
+                        android:visibility="@{totalCount >0 ? view.VISIBLE : view.GONE}"
+                        android:text="@{@string/msg_banner_count(currentPage, totalCount)}"/>
 
                 </FrameLayout>
 
@@ -55,5 +70,6 @@
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

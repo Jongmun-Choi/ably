@@ -4,6 +4,7 @@ import com.test.ably.model.Goods
 import com.test.ably.model.HomeData
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface AblyApiService {
 
@@ -11,5 +12,5 @@ interface AblyApiService {
     fun getHomeItemList() : Call<HomeData>
 
     @GET("home/goods")
-    fun getGoods(lastId : String): Call<List<Goods>>
+    fun getGoods(@Query("lastId") lastId : String): Call<HomeData>
 }

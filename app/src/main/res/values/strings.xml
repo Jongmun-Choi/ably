@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ably</string>
+    <string name="msg_sell_count">%d개 구매중</string>
+    <string name="msg_price">%d</string>
 </resources>

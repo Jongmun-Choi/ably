@@ -20,15 +20,14 @@
             app:tabGravity="fill"
             app:tabTextColor="@color/brownish_grey"
             app:tabSelectedTextColor="@color/watermelon"
+            app:tabIconTint="@color/watermelon"
             />
 
-        <FrameLayout
+        <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/container"
             android:layout_above="@id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-        </FrameLayout>
+            android:layout_height="match_parent" />
 
     </RelativeLayout>
 </layout>

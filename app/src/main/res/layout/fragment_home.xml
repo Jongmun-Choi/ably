@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="currentPage"
+            type="Integer" />
+        <variable
+            name="totalCount"
+            type="Integer" />
+
+        <variable
+            name="view"
+            type="android.view.View" />
+
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/layoutTotal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/banner_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="263dp">
+                    </androidx.viewpager.widget.ViewPager>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="3dp"
+                        android:paddingHorizontal="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_gravity="bottom|right"
+                        android:textSize="12sp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/bg_page_count"
+                        android:visibility="@{totalCount >0 ? view.VISIBLE : view.GONE}"
+                        android:text="@{@string/msg_banner_count(currentPage, totalCount)}"/>
+
+                </FrameLayout>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/goods_grid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="12dp"
+                    android:paddingTop="12dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="2"
+                    android:nestedScrollingEnabled="false">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

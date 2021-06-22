@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ably</string>
+    <string name="msg_sell_count">%d개 구매중</string>
+    <string name="msg_price">%d</string>
+    <string name="msg_banner_count">%d/%d</string>
+    <string name="msg_empty_zzim">찜항목이 비어있네요.\n마음에 드는 아이템을 찜해보세요</string>
+    <string name="msg_loading">데이터를 불러오는 중입니다.</string>
 </resources>
